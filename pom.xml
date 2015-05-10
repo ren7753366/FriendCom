@@ -6,8 +6,8 @@
 		<artifactId>weixin-java-parent</artifactId>
 		<version>1.1.2</version>
 	</parent>
-	<groupId>me.communication</groupId>
-	<artifactId>Communication</artifactId>
+	<groupId>me.FriendCom</groupId>
+	<artifactId>FriendCom</artifactId>
 	<packaging>war</packaging>
 
   <properties>
@@ -239,7 +239,7 @@
 				<directory>src/main/resources</directory>
 			</resource>
 		</resources>
-		<finalName>Communication</finalName>
+		<finalName>FriendCom</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
