@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!-- 定时作业 -->
+<beans>		
+	<!-- 定时执行start -->
+	<!-- <bean id="batchUserJobWorker" class="bocsoft.weixin.system.springjob.BatchUserJob">
+		<property name="syncTaskService" ref="syncTaskService"></property>
+		<property name="publicPlatAccountService" ref="publicPlatAccountService"></property>
+	</bean>
+	
+	<bean id="batchUserJobTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="batchUserJobWorker" />
+		</property>
+		<property name="targetMethod">
+			<value>run</value>
+		</property>
+	</bean>
+	
+	<bean id="batchUserJobDoTime"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="batchUserJobTask" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 23 * * ?</value>
+		</property>
+	</bean>
+	
+	总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 
+	<bean id="startQuertz" lazy-init="false" autowire="no"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				 <ref bean="batchUserJobDoTime"/>批量同步微信用户，每天23点执行
+			</list>
+		</property>
+	</bean> -->
+</beans>

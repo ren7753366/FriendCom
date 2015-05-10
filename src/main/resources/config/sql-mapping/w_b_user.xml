@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="w.b.user">
+	<typeAlias alias="buser" type="com.shareideals.domain.WBUser"/>
+	
+	<resultMap id="buserMap" class="buser">
+		<result property="id" column="ID"/>
+		<result property="pubid" column="PUBID"/>
+		<result property="loginName" column="LOGIN_NAME"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="roleType" column="ROLE_TYPE"/>
+		<result property="username" column="USERNAME"/>
+		<result property="mobile" column="MOBILE"/>
+		<result property="remark" column="REMARK"/>
+		<result property="timestamp" column="TIMESTAMP"/>
+		<result property="delFlag" column="DEL_FLAG"/>
+	</resultMap>
+	
+	
+	<!-- 添加用户信息 -->
+	<insert id="insertWBUser" parameterClass="buser">
+		INSERT INTO W_B_USER(PUBID,LOGIN_NAME,PASSWORD,ROLE_TYPE,USERNAME,MOBILE,REMARK,TIMESTAMP,DEL_FLAG)
+			VALUES (#pubid#,#loginName#,#password#,#roleType#,#username#,#mobile#,#remark#,now(),0)
+		<selectKey resultClass="int" keyProperty="id">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+	</insert>
+	
+	<!-- 更新用户信息 -->
+	<update id="updateWBUser"  parameterClass="buser">
+		UPDATE W_B_USER SET
+		<dynamic prepend=" ">
+			<isNotNull prepend="," property="pubid">
+				PUBID=#pubid#
+			</isNotNull>
+			<isNotNull prepend="," property="loginName">
+				LOGIN_NAME=#loginName#
+			</isNotNull>
+			<isNotNull prepend="," property="password">
+				PASSWORD=#password#
+			</isNotNull>
+			<isNotNull prepend="," property="roleType">
+				ROLE_TYPE=#roleType#
+			</isNotNull>
+			<isNotNull prepend="," property="username">
+				USERNAME=#username#
+			</isNotNull>
+			<isNotNull prepend="," property="mobile">
+				MOBILE=#mobile#
+			</isNotNull>
+			<isNotNull prepend="," property="remark">
+				REMARK=#remark#
+			</isNotNull>
+			<isNotNull prepend="," property="timestamp">
+				TIMESTAMP=now()
+			</isNotNull>
+		</dynamic>
+		where ID=#id#
+	</update>
+	
+	<delete id="deleteWBUser"  parameterClass="int">
+	    DELETE FROM W_B_USER WHERE ID = #id#
+	</delete>
+</sqlMap>
